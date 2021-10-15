@@ -1,0 +1,27 @@
+#! /bin/bash
+### BEGIN INIT INFO
+# Provider: wang
+# Required-Start: $remote_fs
+# Required-Stop: $remote_fs
+# Default-Start:2 3 4 5
+# Default-Stop:0 1 6
+# Short-Description:Remote control pi car
+# Description:This service is used to start or stop Pi car programs
+### END INIT INFO
+case "$1" in
+    "start"):
+      ech0 "Starting emgClient"
+      cd /home/pi/Work/emg_socket/
+      ./emg.sh&
+      ;;
+    "stop"):
+      ech0 "Stopping emgClient"
+      sudo killall emg_socket
+      sudo killall emgClient
+      ;;
+    *)
+      echo "Usage:service emgClient start|stop"
+      exit 1
+      ;;
+esac
+exit 0

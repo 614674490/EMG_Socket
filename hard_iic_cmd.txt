@@ -1,0 +1,19 @@
+#WIFI
+0D1D
+12345678
+
+# 打开IIC
+/boot/config.txt
+# 测试IIC是否开启
+sudo apt-get install i2c-tools
+sudo i2cdetect -y 1
+
+# python3+硬件IIC+ADS1115高位在前，低位在后
+# 安装ADS1115依赖库（时间比较长）
+（1）设置配置寄存器
+0 000 
+（2）定位到转换寄存器
+
+（3）读取转换寄存器
+
+pip3 install -i https://pypi.mirrors.ustc.edu.cn/simple/ Adafruit_ADS1x15
