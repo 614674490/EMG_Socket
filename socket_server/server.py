@@ -1,7 +1,7 @@
 '''
 Author: Ken Kaneki
 Date: 2021-09-10 16:40:00
-LastEditTime: 2021-10-14 16:50:48
+LastEditTime: 2021-12-01 17:18:00
 Description: README
 '''
 
@@ -11,6 +11,7 @@ import socket
 from threading import Thread
 
 import matplotlib.pyplot as plt
+import numpy
 from matplotlib.animation import FuncAnimation  # 动图的核心函数
 
 vIP = '192.168.43.195'
@@ -137,18 +138,21 @@ class getEmg(Thread,Connect):
                     print(e)
 
 
-fig, ax = plt.subplots()
+fig, ax = plt.subplots(figsize=(12.8,7.2),dpi=100)
+
 # 设置坐标轴
 ax.set_title('emg signal')
-ax.set_xlabel('time/ms')
+ax.set_xlabel('time')
 ax.set_ylabel('emg/V')
 ax.set_ylim([0.0, 5.0])
 ax.set_xlim([0, plotUI.POINTS])
 ax.set_autoscale_on(False)
 ax.set_xticks(range(0, 200, 10))
-ax.set_yticks(range(0, 5, 1))
+ax.set_yticks(numpy.arange(0.0,5.0,0.5))
+ax.set_yticks(numpy.arange(0.0,5.0,0.1),minor=True)
+
 ax.grid(True)
-line_data, = ax.plot(range(plotUI.POINTS), plotUI.data_list)
+line_data, = ax.plot(range(plotUI.POINTS),plotUI.data_list,'orange')
 
 
 # 用来更新line_data
